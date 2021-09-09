@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd "$FORNIX_FOLDER/main"
+gem build ruby_grammar_builder.gemspec 
