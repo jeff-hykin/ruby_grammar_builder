@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'lib/textmate_grammar'
+require_relative 'lib/ruby_grammar_builder'
 require 'pp'
 
 test_pat = Pattern.new(

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'textmate_grammar/util'
+require 'ruby_grammar_builder/util'
 
 #
 # Warns when a PatternRange has a start_pattern that matches the empty string

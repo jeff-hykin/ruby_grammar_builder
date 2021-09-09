@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'textmate_grammar/util'
+require 'ruby_grammar_builder/util'
 
 #
 # A pattern that has an includes cannot have any tag_as in @match

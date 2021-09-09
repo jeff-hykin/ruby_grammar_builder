@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    textmate_grammar (0.0.0)
+    ruby_grammar_builder (0.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -91,7 +91,7 @@ DEPENDENCIES
   simplecov
   simplecov-lcov
   solargraph
-  textmate_grammar!
+  ruby_grammar_builder!
   yard
 
 RUBY VERSION

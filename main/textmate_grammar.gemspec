@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |s|
-    s.name = 'textmate_grammar'
+    s.name = 'ruby_grammar_builder'
     s.version = '0.0.0'
     s.date = '2019-09-16'
     s.summary = 'A library to generate textmate grammars'

@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-require 'textmate_grammar/grammar'
-require 'textmate_grammar/stdlib/common'
+require 'ruby_grammar_builder/grammar'
+require 'ruby_grammar_builder/stdlib/common'

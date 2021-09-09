@@ -2,11 +2,11 @@
 
 require 'deep_clone'
 require 'yaml'
-require 'textmate_grammar/grammar_plugin'
-require 'textmate_grammar/util'
-require 'textmate_grammar/regex_operator'
-require 'textmate_grammar/regex_operators/concat'
-require 'textmate_grammar/tokens'
+require 'ruby_grammar_builder/grammar_plugin'
+require 'ruby_grammar_builder/util'
+require 'ruby_grammar_builder/regex_operator'
+require 'ruby_grammar_builder/regex_operators/concat'
+require 'ruby_grammar_builder/tokens'
 
 # import Pattern, LegacyPattern, and PatternRange
 Dir[File.join(__dir__, 'pattern_variations', '*.rb')].each { |file| require file }
