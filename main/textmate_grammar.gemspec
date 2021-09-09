@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
     s.name = 'ruby_grammar_builder'
-    s.version = '0.0.0'
+    s.version = '0.0.1'
     s.date = '2019-09-16'
     s.summary = 'A library to generate textmate grammars'
     s.authors = ["Jeff Hykin", "Matthew Fosdick"]
