@@ -48,5 +48,5 @@ Altertive instructions if GUI is needed (matplotlib, tkinter, qt, etc)
     * `cd *this-repo*`
 * Actually run some code
     * run `commands/start` to get into the project environment
-        * Note: this will almost certainly take a while the first time because it will auto-install exact versions of everything: `bash`, `grep`, `python`, all pip modules, etc
+        * Note: this will almost certainly take a while the first time because it will auto-install exact versions of everything: `bash`, `grep`, `ruby`, all ruby gems, etc
     * run `project commands` to re-list the project commands
