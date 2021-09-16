@@ -32,7 +32,7 @@ Here's a quick run down.
 
 (just FYI, we would like to have a bunch more documentation, but it takes time)
 
-`gem install ruby_grammar_builder`
+`gem install ruby_grammar_builder` Note: this gem has *not* been tested with Ruby 3
 
 ```ruby
 require "ruby_grammar_builder"
