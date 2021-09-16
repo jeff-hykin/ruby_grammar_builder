@@ -18,7 +18,7 @@ This is a library for making textmate grammars in a maintainable way. It has bee
   - instead of `/(a|b)/` you can write `Pattern.new(/a/).or(/b/)`
   - instead of `/a?/` you can write `maybe(/a/)`
   - etc
-  - see [here](https://github.com/jeff-hykin/better-cpp-syntax/blob/fe873cdfacd1df7072e7b8c95df3df369c1ffcaa/documentation/CONTRIBUTING.md#L124) for some more examples
+  - see [here](https://github.com/jeff-hykin/better-cpp-syntax/blob/fe873cdfacd1df7072e7b8c95df3df369c1ffcaa/documentation/CONTRIBUTING.md#readable-regex-guide) for some more examples
   - readable regex has a LOT of support, including advanced tools like [backreferences](https://www.regular-expressions.info/backref.html) and [atomic capture groups](https://www.regular-expressions.info/atomic.html). Sadly we haven't had time to document all of the features yet.
 
 ### Does this make it better than Tree-sitter parsers?
