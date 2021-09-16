@@ -100,12 +100,15 @@ grammar[:string] = PatternRange.new(
         tag_as: 'punctuation.definition.string'
     ),
     includes: [
-        # escape pattern
-        Pattern.new(
-            match: /\\./,
-            tag_as: "constant.character.escape",
-        ),
+        :escape_pattern,
+        # even though we havent created :escape_pattern yet
+        # that is okay, because were about to
+        # (this is a necessary feature for recursive patterns that include themselves)
     ],
+)
+grammar[:escape_pattern] = Pattern.new(
+    match: /\\./,
+    tag_as: "constant.character.escape",
 )
 
 
