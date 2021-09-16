@@ -102,7 +102,7 @@ grammar[:string] = PatternRange.new(
     includes: [
         :escape_pattern,
         # even though we havent created :escape_pattern yet
-        # that is okay, because were about to
+        # that is okay, because we're about to
         # (this is a necessary feature for recursive patterns that include themselves)
     ],
 )

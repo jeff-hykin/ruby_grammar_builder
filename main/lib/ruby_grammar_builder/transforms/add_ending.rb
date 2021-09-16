@@ -11,7 +11,7 @@ class AddEnding < GrammarTransform
         return pattern.map { |v| pre_transform(v, options) } if pattern.is_a? Array
         return pattern unless pattern.is_a? PatternBase
 
-        ending = options[:grammar].scope_name.split(".")[-1]
+        ending = options[:grammar].ending
         pattern.transform_tag_as do |tag_as|
             tag_as.split(" ").map do |tag|
                 next tag if tag.end_with?(ending)

@@ -125,6 +125,7 @@ class Grammar
         @name = keys[:name]
         @scope_name = keys[:scope_name]
         @repository = {}
+        @ending = keys[:ending] || @scope_name.split('.').drop(1).join('.')
 
         keys.delete :name
         keys.delete :scope_name
@@ -458,13 +459,13 @@ class Grammar
             inherit_or_embedded: :embedded,
             generate_tags: true,
             syntax_format: :json,
-            syntax_name: "#{@scope_name.split('.').drop(1).join('.')}",
+            syntax_name: "#{@ending}",
             syntax_dir: options[:directory],
-            tag_name: "#{@scope_name.split('.').drop(1).join('.')}_scopes.txt",
             tag_dir: options[:directory],
             should_lint: true,
         }
         options = default.merge(options)
+        options[:tag_name] ||= options[:syntax_name] + "_scopes.txt"
         
         output = generate(options)
 

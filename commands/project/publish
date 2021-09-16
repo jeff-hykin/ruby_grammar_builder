@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 cd "$FORNIX_FOLDER/main"
-gem push ruby_grammar_builder-0.0.5.gem
+gem push ruby_grammar_builder-0.1.0.gem
