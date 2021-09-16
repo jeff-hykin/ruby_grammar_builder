@@ -1,0 +1,41 @@
+{
+  "version": "515856a26797c81f7779a330b6c7d8f09db47d29",
+  "name": "import",
+  "scopeName": "source.import",
+  "description": "import grammar fixture",
+  "patterns": [
+    {
+      "include": "#abc"
+    },
+    {
+      "include": "#def"
+    }
+  ],
+  "repository": {
+    "72056144718_test_pat": {
+      "match": "abcd"
+    },
+    "abc": {
+      "match": "abc",
+      "name": "abc.import",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "include": "#p123"
+            },
+            {
+              "include": "#72056144718_test_pat"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      }
+    },
+    "def": {
+      "match": "def"
+    }
+  }
+}

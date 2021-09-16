@@ -21,6 +21,7 @@ class Grammar
     attr_accessor :repository
     attr_accessor :name
     attr_accessor :scope_name
+    attr_accessor :ending
 
     #
     # Create a new Exportable Grammar (Grammar Partial)
