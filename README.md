@@ -124,10 +124,7 @@ quote = Pattern.new(
 
 smalltalk = Pattern.new(
     match: /blah\/blah\/blah/,
-    tag_as: "punctuation.separator.attribute",
-    includes: [
-        :evaluation_context,
-    ],
+    tag_as: "string.smalltalk",
 )
 
 phrase = Pattern.new(
