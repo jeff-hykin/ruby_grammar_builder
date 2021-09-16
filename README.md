@@ -7,7 +7,7 @@ This is a library for making textmate grammars in a maintainable way. It has bee
 - **The full power of a programming language**
   - The first problem is grammars themselves are static. No variables, no functions, which means code duplication is rampant. The most basic feature of this library is providing you with a full/legit programming language (ruby) to develop grammars with.
   - Why ruby? Textmate regex is based on Ruby regex. (But also there are 100 other reasons ruby is perfect for this library)
-- **Truely modular patterns**
+- **Truly modular patterns**
   - This was so much work to implement
   - By default patterns effectively couldn't be modular/composable because the only way to give a pattern a name is to give it a number (a capture group number). But when you take `PatternAAA` and put it inside `PatternBBB`, the numbers change because they're sequential and `PatternBBB` has some groups of its own that offset all the group numbers in `PatternAAA`. This library solves this problem, by doing all the heavy lifting of calculating/tracking what the capture numbers will be offset by in order to correctly attach the syntax-names to the correct number. You never have to deal with capture group numbers again.
 - **No more double escaping regex**
