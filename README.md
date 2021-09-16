@@ -152,9 +152,9 @@ phrase = Pattern.new(
 # NOTE: PatternRanges currently can't be put inside of Patterns. The textmate engine doesn't support this, and we have not found a good enough workaround yet
 ```
 
-## What Names should I use for `tag_as:`?
+## What names should I use for `tag_as:`?
 
-This is very important. Please try to follow the newly created standard documented [here](https://github.com/chbk/flight-manual.atom.io/blob/scopes/content/hacking-atom/sections/syntax-naming-conventions.md). Previously there was no standard whatsoever and it made making themes very hard.
+Please, please, please don't invent your own names if you don't have to. See [this guide](https://github.com/chbk/flight-manual.atom.io/blob/scopes/content/hacking-atom/sections/syntax-naming-conventions.md) for coming up for names. Before that document there was effectively no standard, and it made theme-ing very hard.
 
 ### API Details
 
