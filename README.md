@@ -15,7 +15,7 @@ This is a library for making textmate grammars in a maintainable way. It has bee
   - This library fixes that because ruby has regex-literals, and also string literals (also called raw strings). So you can finally just write what you mean (and you'll actually have syntax highlighting!)
 - **Regex has a more-readble option**
   - instead of `/(?<=thing)otherThing/` you can write `lookBehindFor(/thing/).then(/otherThing/)`
-  - instead of `/(a|b)/` you can write `/a/.or(/b/)`
+  - instead of `/(a|b)/` you can write `Pattern.new(/a/).or(/b/)`
   - instead of `/a?/` you can write `maybe(/a/)`
   - etc
   - see [here](https://github.com/jeff-hykin/better-cpp-syntax/blob/fe873cdfacd1df7072e7b8c95df3df369c1ffcaa/documentation/CONTRIBUTING.md#L124) for some more examples
