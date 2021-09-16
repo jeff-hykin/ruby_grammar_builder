@@ -61,8 +61,22 @@ grammar = Grammar.new(
 )
 
 # create a pattern for a keyword
-grammar[:misc_keyword] = Pattern.new(
-    match: /\bmisc\b/,
+grammar[:incorrect_misc_keyword] = Pattern.new(
+    match: /misc/,
+    tag_as: "keyword.other.misc",
+    # note: don't try matching newlines because Patterns cant match more than one line
+    # (this is NOT a library limitation, but a limitation of the Textmate engines that code editors use)
+    
+    # below is both documentation e.g. "hey this is what the pattern should/shouldnt do"
+    # but it is also a unit test that actually makes sure those things are true
+    should_fully_match: [ "misc" ],
+    should_partial_match: [ "misc.", "= misc", ],
+    should_not_partial_match: [ "miscc", "Misc", "_misc" ],
+)
+# NOTE: ^ that will throw an error because it fails one of the test cases
+grammar[:correct_misc_keyword] = Pattern.new(
+    match: @word_boundary.then(/misc/).then(@word_boundary),
+    # there are a handful of other helpers like @word_boundary, see: https://github.com/jeff-hykin/ruby_grammar_builder/blob/master/documentation/patterns.md
     tag_as: "keyword.other.misc",
     # note: don't try matching newlines because Patterns cant match more than one line
     # (this is NOT a library limitation, but a limitation of the Textmate engines that code editors use)
