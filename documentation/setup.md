@@ -1,20 +1,33 @@
-# Auto Setup
+# Setup The Project Environment
 
-TLDR:
-- install nix
-- run `commands/start` (which uses nix to install everything)
-- \* some extra work if you have Windows
+### If you're an Experienced/Senior Dev
 
+- (Don't git clone)
+- Run this: `eval "$(curl -fsSL git.io/JE2Zm || wget -qO- git.io/JE2Zm)"`
+- If you're on Windows, run it inside WSL (Ubuntu 20.04 preferably)
+- If you're a responsible human being and therefore don't want run a sketchy internet script, props to you 👍. Take a look at the explaination at the bottom and you'll be able to run the commands yourself.
 
-### For Windows
+### If the above instructions didn't make sense
 
-* Get [WSL](https://youtu.be/av0UQy6g2FA?t=91) (Windows Subsystem for Linux) or [WSL2](https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10)<br>
-    * If you're not familiar with WSL, I'd recommend [watching a quick thing on it like this one](https://youtu.be/av0UQy6g2FA?t=91)
-    * Ubuntu 18.04 for WSL is preferred (same as in that linked video), but Ubuntu 20.04 or similar should work.
-    * [WSL2](https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10) (just released August 2020) is needed if you want to use your GPU.<br>
-* Once WSL is installed (and you have a terminal logged into WSL) follow the Mac/Linux instructions below.
-* (tip: when accessing WSL, you probably want to use the VS Code terminal, or the [open source windows terminal](https://github.com/microsoft/terminal) instead of CMD)
+- Mac/Linux users
+    - open up your terminal/console app
+    - use `cd` to get to the folder where you want this project ([tutorial on how to use cd here](https://github.com/jeff-hykin/fornix/blob/b6fd3313beda4f80b7051211cb790a4f34da590a/documentation/images/cd_tutorial.gif))
+    - (If you get errors on the next step -> keep reading)
+    - Type this inside your terminal/console <br>`eval "$(curl -fsSL git.io/JE2Zm || wget -qO- git.io/JE2Zm)"`<br>[press enter]
+    - Possible errors:
+        - On MacOS, if your hard drive is encrypted on BigSur, you might need to [follow these steps](https://stackoverflow.com/questions/67115985/error-installing-nix-on-macos-catalina-and-big-sur-on-filevault-encrypted-boot-v#comment120393385_67115986)
+        - On Linux, if you're running a *really* barebones system that somehow doesn't have either `curl` or `wget`, install curl or wget and rerun the previous step
+- Windows users
+    - Get [WSL](https://youtu.be/av0UQy6g2FA?t=91) (Windows Subsystem for Linux) or [WSL2](https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10)<br>
+        - If you're not familiar with WSL, I'd recommend [watching a quick thing on it like this one](https://youtu.be/av0UQy6g2FA?t=91)
+        - Ubuntu 18.04 for WSL is preferred (same as in that linked video), but Ubuntu 20.04 or similar should work.
+        - [WSL2](https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10) (just released August 2020) is needed if you want to use your GPU.<br>
+    - Once WSL is installed (and you have a terminal logged into WSL) follow the Mac/Linux instructions.
+    - (tip: when accessing WSL, you probably want to use the VS Code terminal, or the [open source windows terminal](https://github.com/microsoft/terminal) instead of CMD)
 
+After you've finished working and close the terminal, you can always return to project environment by doing
+- `cd wherever-you-put-the-project`
+- `commands/start`
 
 <!-- 
 Altertive instructions if GUI is needed (matplotlib, tkinter, qt, etc)
@@ -36,17 +49,10 @@ Altertive instructions if GUI is needed (matplotlib, tkinter, qt, etc)
  
 -->        
 
-### For Mac/Linux
+### What is that `eval` command doing?
 
-* Run the following in your console/terminal app to install [nix](https://nixos.org/guides/install-nix.html)
-    * `[ -z "$(command -v "curl")" ] && sudo apt-get update && sudo apt-get install curl` (making sure you have curl)
-    * `eval "$(curl -fsSL git.io/JE2Zm)"`
-* Run `nix-env -i git` to get `git` (if you don't already have git)
-* Clone/Open the project
-    * `cd wherever-you-want-to-save-this-project`<br>
-    * `git clone https://github.com/*this-repo-url*`
-    * `cd *this-repo*`
-* Actually run some code
-    * run `commands/start` to get into the project environment
-        * Note: this will almost certainly take a while the first time because it will auto-install exact versions of everything: `bash`, `grep`, `ruby`, all ruby gems, etc
-    * run `project commands` to re-list the project commands
+1. Installing nix [manual install instructions here](https://nixos.org/guides/install-nix.html)
+2. Installing `git` (using nix) if you don't already have git
+3. It clones the repository
+4. It `cd`'s inside of the repo
+5. Then it runs `commands/start` to enter the project environment
