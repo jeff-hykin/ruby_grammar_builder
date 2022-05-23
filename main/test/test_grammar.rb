@@ -2,6 +2,10 @@
 
 require_relative 'test_helper'
 
+def test_file
+    "import.export.tmLanguage.json"
+end
+
 class GrammarTest < MiniTest::Test
     def test_source
         assert_silent do
@@ -96,9 +100,9 @@ class GrammarTest < MiniTest::Test
             syntax_name: "import.export",
         )
 
-        assert_equal JSON.parse(File.read(import_path)), JSON.parse(File.read("import.export.json"))
+        assert_equal JSON.parse(File.read(import_path)), JSON.parse(File.read(test_file))
     ensure
-        File.delete("import.export.json") if File.exist?("import.export.json")
+        File.delete(test_file) if File.exist?(test_file)
     end
 
     def test_export
@@ -144,6 +148,6 @@ class GrammarTest < MiniTest::Test
             :version => "",
         }
 
-        assert_equal expected, g.generate
+        assert_equal expected, g.generate()
     end
 end
