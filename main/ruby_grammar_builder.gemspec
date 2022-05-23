@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 require "date"
+require 'json'
+
+# version bump on build
+version_path = File.dirname(__FILE__)+"/version.json"
+major, minor, patch = JSON.parse(IO.read(version_path))
+patch+=1
+IO.write(version_path, JSON.unparse([major,minor,patch]))
 
 Gem::Specification.new do |s|
     s.name = 'ruby_grammar_builder'
-    s.version = '0.1.1'
+    s.version = "#{major}.#{minor}.#{patch}"
     s.date = Date.today
     s.summary = 'A library to generate textmate grammars'
     s.authors = ["Jeff Hykin", "Matthew Fosdick"]

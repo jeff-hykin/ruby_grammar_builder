@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
 cd "$FORNIX_FOLDER/main"
-gem push ruby_grammar_builder-0.1.1.gem
+# remove old builds
+rm -f ruby_grammar_builder-*.gem
+# build
+../commands/project/build
+# use the only build file thats there
+gem push "$(ls -1 | grep "ruby_grammar_builder-.*")"
