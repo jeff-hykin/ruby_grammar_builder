@@ -723,7 +723,7 @@ class PatternBase
             end
 
             # if the reference does exist, then replace it with it's number
-            "\\#{references[match_reference]}"
+            "\\k<#{references[match_reference]}>"
         end
 
         # check for a subroutine to the Nth group, replace it with `\N`
