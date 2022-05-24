@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ruby_grammar_builder/util'
+require_relative '../../ruby_grammar_builder/util'
 
 #
 # Warns when a PatternRange has a start_pattern that matches the empty string

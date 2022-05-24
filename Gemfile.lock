@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    deep_clone (0.0.1)
     docile (1.4.0)
     gem-release (2.2.2)
     minitest (5.14.4)
@@ -16,10 +17,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  deep_clone (~> 0.0.1)
   gem-release
   minitest (~> 5.14)
   simplecov (~> 0.21.2)
   simplecov-lcov (~> 0.8.0)
 
 BUNDLED WITH
-   2.1.4
+   2.2.24

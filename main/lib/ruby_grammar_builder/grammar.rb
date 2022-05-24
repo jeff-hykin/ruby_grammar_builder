@@ -295,7 +295,7 @@ class Grammar
     #
     # @return [Hash] the generated grammar
     #
-    def generate(options)
+    def generate(options={})
         default = {
             inherit_or_embedded: :embedded,
             should_lint: true,

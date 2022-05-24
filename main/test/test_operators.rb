@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require_relative 'test_helper'
-require 'ruby_grammar_builder/regex_operator'
-require 'ruby_grammar_builder/regex_operators/concat'
-require 'ruby_grammar_builder/regex_operators/alternation'
+require_relative '../lib/ruby_grammar_builder/regex_operator'
+require_relative '../lib/ruby_grammar_builder/regex_operators/concat'
+require_relative '../lib/ruby_grammar_builder/regex_operators/alternation'
 
 class OperatorTest < MiniTest::Test
     def test_noop

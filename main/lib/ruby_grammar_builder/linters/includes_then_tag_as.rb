@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ruby_grammar_builder/util'
+require_relative '../../ruby_grammar_builder/util'
 
 #
 # A pattern that has an includes cannot have any tag_as in @match

@@ -17,7 +17,7 @@ SimpleCov.start do
 end
 
 require 'minitest/autorun'
-require 'ruby_grammar_builder'
+require_relative '../lib/ruby_grammar_builder'
 
 Grammar.remove_plugin(StandardNaming)
 

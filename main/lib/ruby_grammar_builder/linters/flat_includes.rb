@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ruby_grammar_builder/util'
+require_relative '../../ruby_grammar_builder/util'
 
 #
 # Internal check, ensures that :includes is nil or a flat array
