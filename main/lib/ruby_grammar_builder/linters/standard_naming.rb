@@ -194,7 +194,11 @@ class StandardNaming < GrammarLinter
 
         valid_prefix = (pos > 0) ? tag[0..(pos-1)].join(".") + "." : ""
 
-        puts "The prefix `#{tag[0..pos].join('.')}' does not follow the standard format"
+        joined_tag = "#{tag[0..pos].join('.')}"
+        if joined_tag.start_with? "meta."
+            return
+        end
+        puts "The prefix `#{joined_tag}' does not follow the standard format"
         puts "The expected prefixes at this level are:"
         root.keys.each do |key|
             if root[:key] == false
