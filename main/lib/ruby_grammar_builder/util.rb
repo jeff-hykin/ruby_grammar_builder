@@ -51,6 +51,28 @@ end
 #   forward slash "/" at the beginning and
 # @return [Boolean] if the string represents an single regex entity
 def string_single_entity?(regex_string)
+    normal_char = '[a-zA-Z0-9_\-@&%#\'"<>=\/\.,`~\s;:!]'
+    # normal char
+    if regex_string =~ /^#{normal_char}$/
+        return true
+    end
+    # escape sequence (all are valid, even stuff like \@ ("\\@") or "\\" + "\n" )
+    if regex_string =~ /^\\[\w\W]$/
+        return true
+    end
+    # character class that doesn't contain ]
+    if regex_string =~ /^\[[^\]]*\]$/
+        return true
+    end
+    
+    # fail if more than one of any of the above
+    if regex_string =~ /^(#{normal_char}|\\[\w\W]|\[[^\]]*\]){2,}$/
+        return false
+    end
+    
+    # 
+    # more complicated cases
+    # 
     escaped = false
     in_set = false
     depth = 0
