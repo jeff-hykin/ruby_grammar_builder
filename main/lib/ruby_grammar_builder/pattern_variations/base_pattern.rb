@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+$ruby_grammar_builder__unit_test_active = false
 #
 # Provides a base class to simplify the writing of complex regular expressions rules
 # This class completely handles capture numbers and provides convenience methods for
@@ -229,7 +229,7 @@ class PatternBase
     #       number of times
     #   @option opts [Enumerator, Integer] :at_least match no fewer than N times, nil to
     #       match any number of times
-    #   @option opts [Enumerator, Integer] :how_many_times? match exactly N times
+    #   @option opts [Enumerator, Integer] :how_many_times match exactly N times
     #   @option opts [Array<String>] :word_cannot_be_any_of list of wordlike string that
     #       the pattern should not match (this is a qualifier not a unit test)
     #   @option opts [Boolean] :dont_back_track? can this pattern backtrack
@@ -415,6 +415,8 @@ class PatternBase
     # @return [Boolean] If all test passed return true, otherwise false
     #
     def run_tests
+        original_flag_value = $ruby_grammar_builder__unit_test_active
+        $ruby_grammar_builder__unit_test_active = true
         pass = [
             run_self_tests,
         ]
@@ -427,6 +429,7 @@ class PatternBase
         elsif @arguments[:includes].is_a? PatternBase
             pass << @arguments[:includes].run_tests
         end
+        $ruby_grammar_builder__unit_test_active = original_flag_value
         pass.none?(&:!)
     end
 
@@ -448,8 +451,17 @@ class PatternBase
         ].any? { |k| @arguments.include? k }
 
         copy = __deep_clone_self__
-        test_regex = copy.to_r
-        test_fully_regex = wrap_with_anchors(copy).to_r
+        begin
+            test_regex = copy.to_r
+            test_fully_regex = wrap_with_anchors(copy).to_r
+        rescue => exception
+            raise <<~HEREDOC
+                
+                
+                error running unit tests for: #{copy}
+                #{exception}
+            HEREDOC
+        end
 
         warn = lambda do |symbol|
             puts [
@@ -719,22 +731,31 @@ class PatternBase
         self_regex = self_regex.gsub(/\(\?\#\[:backreference:([^\\]+?):\]\)/) do
             match_reference = Regexp.last_match(1)
             if references[match_reference].nil?
-                raise "\nWhen processing the matchResultOf:#{match_reference}, I couldn't find the group it was referencing"
+                if $ruby_grammar_builder__unit_test_active
+                    "(?#would_be_backref_but_null_because_unit_test)A(?<=B)"
+                else
+                    raise "groups:#{groups}\nreferences: #{references}\nWhen processing the matchResultOf:#{match_reference}, I couldn't find the group it was referencing"
+                end
+            else
+                # if the reference does exist, then replace it with it's number
+                "(?:\\#{references[match_reference]})"
             end
-
-            # if the reference does exist, then replace it with it's number
-            "(?:\\#{references[match_reference]})"
         end
 
         # check for a subroutine to the Nth group, replace it with `\N`
         self_regex = self_regex.gsub(/\(\?\#\[:subroutine:([^\\]+?):\]\)/) do
             match_reference = Regexp.last_match(1)
             if references[match_reference].nil?
-                raise "\nWhen processing the recursivelyMatch:#{match_reference}, I couldn't find the group it was referencing"
+                if $ruby_grammar_builder__unit_test_active
+                    "(?#would_be_subroutine_but_null_because_unit_test)A(?<=B)"
+                else
+                    raise "groups:#{groups}\nreferences: #{references}\nWhen processing the recursivelyMatch:#{match_reference}, I couldn't find the group it was referencing"
+                end
+            else
+                # if the reference does exist, then replace it with it's number
+                "\\g<#{references[match_reference]}>"
             end
 
-            # if the reference does exist, then replace it with it's number
-            "\\g<#{references[match_reference]}>"
         end
         # rubocop:enable Metrics/LineLength
         self_regex
