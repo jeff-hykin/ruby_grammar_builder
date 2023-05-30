@@ -299,8 +299,9 @@ Regex is pretty hard to read, so this repo uses a library to help.
   - example `lookAheadToAvoid(/foo/)` => `/(?!foo)/`
 - `recursivelyMatch(reference)` or `.recursivelyMatch(reference)` adds a regex subexpression
   - for example here's a pattern that would match `()`, `(())`, `((()))`, etc
-  - `Pattern.new(match: Pattern.new( "(" ).recursivelyMatch("foobar").or("").then( ")" ), reference: "foobar")`
   - as normal ruby-regex it would look like: `/(\(\g<1>\))/`
+  - `Pattern.new(match: Pattern.new( "(" ).recursivelyMatch("foobar").or("").then( ")" ), reference: "foobar")`
+  - NOTE: there is a known (rare) issue of creating a reference in a parent, and then using oneOf([]), and then trying to use `recursivelyMatch()` inside the oneOf(). Instead of using `oneOf([A,B])`, just use `A.or(B)` to avoid this issue.
 - `matchResultOf(reference)` or `.matchResultOf(reference)` adds a backreference
   - example `Pattern.new(match: /foo|bar/, reference: "foobar").matchResultOf("foobar")` => `/(foo|bar)\1/`
   - matches: `foofoo` and `barbar` but not `foobar`
