@@ -229,7 +229,7 @@ class PatternBase
     #       number of times
     #   @option opts [Enumerator, Integer] :at_least match no fewer than N times, nil to
     #       match any number of times
-    #   @option opts [Enumerator, Integer] :how_many_times match exactly N times
+    #   @option opts [Enumerator, Integer] :how_many_times? match exactly N times
     #   @option opts [Array<String>] :word_cannot_be_any_of list of wordlike string that
     #       the pattern should not match (this is a qualifier not a unit test)
     #   @option opts [Boolean] :dont_back_track? can this pattern backtrack

@@ -87,7 +87,7 @@ class RepeatablePattern < PatternBase
 
         # by default assume no quantifiers
         quantifier = ""
-        # if there is no at_least, at_most, or how_many_times, then theres no quantifier
+        # if there is no at_least, at_most, or how_many_times?, then theres no quantifier
         if @at_least.nil? and @at_most.nil?
             quantifier = ""
         # if there is a quantifier
@@ -173,7 +173,7 @@ class RepeatablePattern < PatternBase
         if quantifying_allowed?
             output += ",\n#{indent}  at_least: " + @arguments[:at_least].to_s if @arguments[:at_least]
             output += ",\n#{indent}  at_most: " + @arguments[:at_most].to_s if @arguments[:at_most]
-            output += ",\n#{indent}  how_many_times: " + @arguments[:how_many_times].to_s if @arguments[:how_many_times]
+            output += ",\n#{indent}  how_many_times?: " + @arguments[:how_many_times?].to_s if @arguments[:how_many_times?]
             output += ",\n#{indent}  word_cannot_be_any_of: " + @arguments[:word_cannot_be_any_of].to_s if @arguments[:word_cannot_be_any_of]
         end
         output += ",\n#{indent}  dont_back_track?: " + @arguments[:dont_back_track?].to_s if @arguments[:dont_back_track?]
