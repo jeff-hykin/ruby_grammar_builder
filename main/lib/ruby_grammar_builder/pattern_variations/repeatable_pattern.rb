@@ -43,10 +43,6 @@ class RepeatablePattern < PatternBase
         # canonize dont_back_track? and as_few_as_possible?
         @arguments[:dont_back_track?] ||= @arguments[:possessive?]
         @arguments[:as_few_as_possible?] ||= @arguments[:lazy?]
-        if @arguments[:greedy?]
-            @arguments[:dont_back_track?] = false
-            @arguments[:as_few_as_possible?] = false
-        end
         # extract the data
         at_least       = attributes_clone[:at_least]
         at_most        = attributes_clone[:at_most]
