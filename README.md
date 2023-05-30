@@ -175,7 +175,7 @@ Something like this in a tmLanguage.json file
 ```json
 {
     "match": "blah/blah/blah",
-    "name": "punctuation.separator.attribute.YOUR_LANG_EXTENSION_HERE",
+    "name": "punctuation.separator.attribute",
     "patterns": [
         {
           "include": "#evaluation_context"
@@ -204,15 +204,15 @@ And things like this
     "end": "\\]\\]",
     "beginCaptures": {
         "0": {
-            "name": "punctuation.section.attribute.begin.YOUR_LANG_EXTENSION_HERE"
+            "name": "punctuation.section.attribute.begin"
         }
     },
     "endCaptures": {
         "0": {
-            "name": "punctuation.section.attribute.end.YOUR_LANG_EXTENSION_HERE"
+            "name": "punctuation.section.attribute.end"
         }
     },
-    "name": "support.other.attribute.YOUR_LANG_EXTENSION_HERE",
+    "name": "support.other.attribute",
     "patterns": [
         {
             "include": "#attributes_context"
