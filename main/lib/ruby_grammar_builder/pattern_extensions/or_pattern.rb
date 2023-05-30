@@ -14,7 +14,61 @@ class OrPattern < PatternBase
     def evaluate_operator
         AlternationOperator.new
     end
+    
+    def run_self_tests
+        pass = [true]
 
+        # some patterns are not able to be evaluated
+        # do not attempt to unless required
+        return true unless [
+            :should_fully_match,
+            :should_not_fully_match,
+            :should_partially_match,
+            :should_not_partially_match,
+        ].any? { |k| @arguments.include? k }
+        
+        copy = @match.__deep_clone_self__
+        test_regex = copy.to_r
+        test_fully_regex = wrap_with_anchors(copy).to_r
+
+        warn = lambda do |symbol|
+            puts [
+                "",
+                "When testing the pattern #{test_regex.inspect}. The unit test for #{symbol} failed.",
+                "The unit test has the following patterns:",
+                "#{@arguments[symbol].to_yaml}",
+                "The Failing pattern is below:",
+                "#{self}",
+            ].join("\n")
+        end
+        if @arguments[:should_fully_match].is_a? Array
+            unless @arguments[:should_fully_match].all? { |test| test =~ test_fully_regex }
+                warn.call :should_fully_match
+                pass << false
+            end
+        end
+        if @arguments[:should_not_fully_match].is_a? Array
+            unless @arguments[:should_not_fully_match].none? { |test| test =~ test_fully_regex }
+                warn.call :should_not_fully_match
+                pass << false
+            end
+        end
+        if @arguments[:should_partially_match].is_a? Array
+            unless @arguments[:should_partially_match].all? { |test| test =~ test_regex }
+                warn.call :should_partially_match
+                pass << false
+            end
+        end
+        if @arguments[:should_not_partially_match].is_a? Array
+            unless @arguments[:should_not_partially_match].none? { |test| test =~ test_regex }
+                warn.call :should_not_partially_match
+                pass << false
+            end
+        end
+
+        pass.none?(&:!)
+    end
+    
     #
     # Raises an error to prevent use as initial type
     #
