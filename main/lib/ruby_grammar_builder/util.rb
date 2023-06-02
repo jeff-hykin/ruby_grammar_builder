@@ -52,21 +52,23 @@ end
 # @return [Boolean] if the string represents an single regex entity
 def string_single_entity?(regex_string)
     normal_char = '[a-zA-Z0-9_\-@&%#\'"<>=\/\.,`~\s;:!]'
+    escape_sequence = '\\\\[\w\W]'
+    character_class_that_doesnt_contain_bracket = '\[[^\]]*\]'
     # normal char
     if regex_string =~ /^#{normal_char}$/
         return true
     end
     # escape sequence (all are valid, even stuff like \@ ("\\@") or "\\" + "\n" )
-    if regex_string =~ /^\\[\w\W]$/
+    if regex_string =~ /^#{escape_sequence}$/
         return true
     end
     # character class that doesn't contain ]
-    if regex_string =~ /^\[[^\]]*\]$/
+    if regex_string =~ /^#{character_class_that_doesnt_contain_bracket}$/
         return true
     end
     
     # fail if more than one of any of the above
-    if regex_string =~ /^(#{normal_char}|\\[\w\W]|\[[^\]]*\]){2,}$/
+    if regex_string =~ /^(#{normal_char}|#{escape_sequence}|#{character_class_that_doesnt_contain_bracket}){2,}$/
         return false
     end
     

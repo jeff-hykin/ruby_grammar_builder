@@ -42,7 +42,7 @@ class PatternBase
     # @return [Boolean] can this capture become capture group 0
     #
     def optimize_outer_group?
-        needs_to_capture? and @next_pattern.nil?
+        self.needs_to_capture? and @next_pattern.nil?
     end
 
     #
@@ -71,18 +71,6 @@ class PatternBase
     def insert(pattern)
         new_pattern = __deep_clone__
         new_pattern.insert!(pattern).freeze
-    end
-
-    #
-    # Adds a capture group if needed
-    #
-    # @param [String] regex_as_string the pattern as a string
-    #
-    # @return [String] the pattern, potentially with a capture group
-    #
-    def add_capture_group_if_needed(regex_as_string)
-        regex_as_string = "(#{regex_as_string})" if needs_to_capture?
-        regex_as_string
     end
 
     #
@@ -306,7 +294,7 @@ class PatternBase
     #
     def to_tag
         output = {
-            match: evaluate,
+            match: self.evaluate(),
         }
 
         output[:captures] = convert_group_attributes_to_captures(collect_group_attributes)
@@ -570,7 +558,12 @@ class PatternBase
     def do_evaluate_self(groups)
         match = @match
         match = match.evaluate(groups) if match.is_a? PatternBase
-        add_capture_group_if_needed(match)
+        if self.needs_to_capture?
+            match = "(#{match})"
+        elsif not string_single_entity?(match)
+            match = "(?:#{match})"
+        end
+        return match
     end
 
     #
@@ -611,7 +604,7 @@ class PatternBase
 
     # (see string_single_entity)
     def single_entity?
-        string_single_entity? evaluate
+        return string_single_entity?( self.evaluate() )
     end
 
     # does this pattern contain no capturing groups
@@ -696,7 +689,7 @@ class PatternBase
     #
     def do_collect_self_groups(next_group)
         groups = []
-        groups << {group: next_group}.merge(@arguments) if needs_to_capture?
+        groups << {group: next_group}.merge(@arguments) if self.needs_to_capture?
         groups
     end
 

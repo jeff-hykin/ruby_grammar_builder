@@ -152,7 +152,13 @@ class RepeatablePattern < PatternBase
 
     # (see PatternBase#do_evaluate_self)
     def do_evaluate_self(groups)
-        add_capture_group_if_needed(add_quantifier_options_to(@match, groups))
+        match = add_quantifier_options_to(@match, groups)
+        if self.needs_to_capture?
+            match = "(#{match})"
+        elsif not string_single_entity?(match)
+            match = "(?:#{match})"
+        end
+        return match
     end
 
     # controls weather @arguments[:at_most] et. al. set @at_most et. al.
