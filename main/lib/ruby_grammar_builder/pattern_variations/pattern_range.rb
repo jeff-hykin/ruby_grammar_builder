@@ -228,6 +228,6 @@ class PatternRange < PatternBase
     # (see PatternBase#inspect)
     #
     def inspect
-        super.split(" ")[0] + " start_pattern:" + @start_pattern.inspect + ">"
+        super.split(" ")[0] + " start_pattern:" + @start_pattern.to_s + ">"
     end
 end

@@ -699,7 +699,7 @@ class PatternBase
     # @return [String] A representation of the pattern
     #
     def inspect
-        super.split(" ")[0] + " match:" + @match.inspect + ">"
+        super.split(" ")[0] + " match:" + @match.to_s + ">"
     end
 
     #
